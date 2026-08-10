@@ -1199,6 +1199,49 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
      1024px (see the "Projects hero 2-col" rule above) — nothing
      here re-enables it, so the mobile hero stays single-column. ---- */
 }
+
+/* ===== MOBILE ONLY: swap which section swipes =====================
+   Case studies are the thing we most want a visitor to notice, so on a phone
+   they stack full-width and read as three distinct stories instead of a strip
+   where two of the three sit off-screen until you happen to swipe.
+   The install gallery is supporting detail, so it takes over as the swipe
+   strip. Desktop (>768px) is untouched: 2-up cards, 3-up gallery grid. */
+@media(max-width:768px){
+  .pgrid{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:clamp(18px,4.6vw,26px)!important;
+    overflow-x:visible!important;
+    overflow-y:visible!important;
+    scroll-snap-type:none!important;
+    margin-left:0!important;
+    margin-right:0!important;
+    padding:0!important;
+  }
+  .pgrid>*{flex:none!important;width:auto!important;scroll-snap-align:none!important}
+  .pgrid .pcardf-img{aspect-ratio:16/10}
+
+  .gallery{
+    display:flex!important;
+    grid-template-columns:none!important;
+    flex-wrap:nowrap;
+    align-items:stretch;
+    gap:clamp(10px,3vw,16px);
+    overflow-x:auto;
+    overflow-y:hidden;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    margin-left:calc(-1 * clamp(16px,4.6vw,24px));
+    margin-right:calc(-1 * clamp(16px,4.6vw,24px));
+    padding:2px clamp(16px,4.6vw,24px) clamp(8px,2.6vw,14px);
+  }
+  .gallery::-webkit-scrollbar{display:none}
+  .gallery>.gfig{
+    flex:0 0 clamp(232px,72vw,320px);
+    min-width:0;height:auto;scroll-snap-align:start;
+  }
+}
 </style>
 </head>
 <body>
@@ -1393,10 +1436,6 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
     </div>
     <div class="gallery">
       <figure class="gfig reveal">
-        <div class="gimg"><img src="assets/img/projects/kitchen-uv900-a.jpg" width="1448" height="1086" loading="lazy" alt="Pentair UV 900 disinfection with spin-down and big-blue sediment and carbon pre-filtration at a three-sink commercial kitchen station" /></div>
-        <figcaption class="gcap">Commercial kitchen &mdash; Pentair UV 900 disinfection with spin-down and big-blue sediment &amp; carbon pre-filtration at the three-sink station.</figcaption>
-      </figure>
-      <figure class="gfig reveal">
         <div class="gimg"><img src="assets/img/projects/water-softeners.jpg" width="1086" height="1448" loading="lazy" alt="A commercial water softener column with its brine tank, installed by DhwaNeer on a service terrace" /></div>
         <figcaption class="gcap">A commercial softener column and brine tank &mdash; hardness control on a dedicated utility line.</figcaption>
       </figure>
@@ -1419,6 +1458,10 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
       <figure class="gfig reveal">
         <div class="gimg"><img src="assets/img/projects/corporate-treatment-train.jpg" width="1254" height="1254" loading="lazy" alt="Wall-mounted multi-stage Pentair bank with a spin-down sediment pre-filter feeding carbon and specialty stages at a corporate facility" /></div>
         <figcaption class="gcap">A wall-mounted multi-stage bank at a corporate facility, laid out for quick, clean servicing.</figcaption>
+      </figure>
+      <figure class="gfig reveal">
+        <div class="gimg"><img src="assets/img/projects/kitchen-uv900-a.jpg" width="1448" height="1086" loading="lazy" alt="Pentair UV 900 disinfection with spin-down and big-blue sediment and carbon pre-filtration at a three-sink commercial kitchen station" /></div>
+        <figcaption class="gcap">Commercial kitchen &mdash; Pentair UV 900 disinfection with spin-down and big-blue sediment &amp; carbon pre-filtration at the three-sink station.</figcaption>
       </figure>
     </div>
   </div>
